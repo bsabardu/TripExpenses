@@ -1,3 +1,32 @@
-<mat-drawer mode="side" opened>
+
+  <div class="form-wrapper">
     <h2 class="mat-title">Add new expense</h2>
-</mat-drawer>
+    <form class="form" [formGroup]="expenseForm" (ngSubmit)="onSubmitForm()">
+      <mat-form-field appearance="outline">
+        <mat-label>Purchased date</mat-label>
+        <input matInput formControlName="purchasedOn">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Nature</mat-label>
+        <input matInput formControlName="nature">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Amount</mat-label>
+        <input matInput formControlName="originalAmount">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Currency</mat-label>
+        <mat-select>
+          <mat-option value="EUR" ngDefaultControl>Euro</mat-option>
+          <mat-option value="GBP">Pound sterling</mat-option>
+          <mat-option value="USD">US Dollard</mat-option>
+          <mat-option value="CHF">Swiss France</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="button-group">
+          <button mat-raised-button color="primary" type="submit">Create expense</button>
+          <button mat-flat-button color="basic" type="button" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+

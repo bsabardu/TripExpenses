@@ -2,7 +2,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -19,13 +21,17 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
 
 // == Import Services
 import { ExpenseService } from 'src/app/services/expense.service';
+  // we are using a service to handle sidenav behavior. that might be overkill but i didn't find any better solution as open and close button are not in the same component
+import { SideNavService } from 'src/app/services/sidenav.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +44,8 @@ import { ExpenseService } from 'src/app/services/expense.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
 
     //Material
@@ -46,10 +54,14 @@ import { ExpenseService } from 'src/app/services/expense.service';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [
-    ExpenseService
+    ExpenseService,
+    SideNavService
   ],
   bootstrap: [AppComponent]
 })

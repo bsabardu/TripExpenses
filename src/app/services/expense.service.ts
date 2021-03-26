@@ -26,13 +26,19 @@ export class ExpenseService {
   constructor(private httpClient: HttpClient) { 
   
   }
+
+  addExpense(expense: Expense) {
+    this.expenses.push(expense);
+    this.emitExpenses();
+  }
+
+
     getExpensesFromServer() {
       this.httpClient
       //API BASE URL are stored in env file
         .get<any[]>(`${environment.API_BASE_URL}/api/expenseItems`)
         .subscribe(
           (response) => {
-            console.log(response);
             this.expenses = response;
             this.emitExpenses();
           },
@@ -40,5 +46,18 @@ export class ExpenseService {
             console.log('Erreur de chargement', error);
           }
         );
+    }
+
+    saveAppareilsToServer() {
+      this.httpClient
+        .put(`${environment.API_BASE_URL}/api/expenseItems`, this.expenses)
+        .subscribe(
+          () => {
+            console.log('Saved')
+          },
+          (error) => {
+            console.log('Error', error)
+          }
+        )
     }
 }
