@@ -9,7 +9,7 @@ export class Expense {
         public originalAmount: Amount,
         public convertedAmount: Amount,
         public comment: string,
-        public createdAt: Date,
-        public lastModifiedAt: Date
+        public createdAt: string,
+        public lastModifiedAt: string
         ){}
 }

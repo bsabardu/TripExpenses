@@ -2,6 +2,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http'
+
 
 
 // == Import Components
@@ -10,22 +12,44 @@ import { HeaderComponent } from './header/header.component';
 import { ExpensesListComponent } from './expenses-list/expenses-list.component';
 import { NewExpenseComponent } from './new-expense/new-expense.component';
 
+  // Material Components
+import { MatToolbarModule } from "@angular/material/toolbar";
+import {MatTableModule} from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
+
+
+
+
 // == Import Services
-import { ExpensesService } from 'src/app/services/expenses.service';
+import { ExpenseService } from 'src/app/services/expense.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ExpensesListComponent,
-    NewExpenseComponent
+    NewExpenseComponent,
+
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+
+    //Material
+    MatToolbarModule,
+    MatTableModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSidenavModule
   ],
   providers: [
-    ExpensesService
+    ExpenseService
   ],
   bootstrap: [AppComponent]
 })

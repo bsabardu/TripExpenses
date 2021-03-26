@@ -1,1 +1,48 @@
-<p>expenses-list works!</p>
+  
+  <mat-card>
+    <mat-card-title>Expenses list</mat-card-title>
+    <!-- dataSource input is provided by expenses array -->
+  <mat-table [dataSource]="expenses">
+
+    <!-- Purchased On  -->
+    <ng-container matColumnDef="purchasedOn">
+      <mat-header-cell *matHeaderCellDef> Purchased On </mat-header-cell>
+      <mat-cell *matCellDef="let expense"> {{expense.purchasedOn}} </mat-cell>
+    </ng-container>
+  
+    <!-- Nature of expense  -->
+    <ng-container matColumnDef="nature">
+      <mat-header-cell *matHeaderCellDef> Nature </mat-header-cell>
+      <mat-cell *matCellDef="let expense"> {{expense.nature}} </mat-cell>
+    </ng-container>
+    
+    <!-- Original Amout  -->
+    <ng-container matColumnDef="originalAmount">
+      <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+      <mat-cell *matCellDef="let expense"> {{expense.originalAmount.amount}} {{expense.originalAmount.currency}}  </mat-cell>
+    </ng-container>
+  
+    <!-- Comment -->
+    <ng-container matColumnDef="comment">
+      <mat-header-cell *matHeaderCellDef> Comment </mat-header-cell>
+      <mat-cell *matCellDef="let expense"> {{expense.comment}} </mat-cell>
+    </ng-container>
+  
+    <!-- Created At -->
+    <ng-container matColumnDef="createdAt">
+      <mat-header-cell *matHeaderCellDef> Created At </mat-header-cell>
+      <mat-cell *matCellDef="let expense"> {{expense.createdAt}} </mat-cell>
+    </ng-container>
+  
+    <!-- Last Modified at -->
+    <ng-container matColumnDef="lastModifiedAt">
+      <mat-header-cell *matHeaderCellDef> Last Modified at </mat-header-cell>
+      <mat-cell *matCellDef="let expense"> {{expense.lastModifiedAt}} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+  </mat-table>
+  </mat-card>
+  
+  
