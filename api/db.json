@@ -31,6 +31,22 @@
       "createdAt": "2021-03-27T10:38:20.840Z",
       "lastModifiedAt": "2021-03-27T10:38:20.840Z",
       "id": "4b66341b-4bfa-45ad-9423-5c2e9bdc9509"
+    },
+    {
+      "purchasedOn": "Test",
+      "nature": "Pl",
+      "comment": "Okaip",
+      "originalAmount": {
+        "amount": 50,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 42.43761670344594,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T13:07:49.118Z",
+      "lastModifiedAt": "2021-03-27T13:07:49.118Z",
+      "id": "369791f5-469a-4e76-a0b2-95c72bd915ff"
     }
   ]
 }

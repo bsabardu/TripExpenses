@@ -1,14 +1,19 @@
+// Import Expense Model
 import { Expense } from 'src/app/models/Expense.model';
-import { Subject } from 'rxjs/Subject'; 
-import { HttpClient } from '@angular/common/http';
+
+// Import env vars
 import { environment } from 'src/environments/environment';
 
-// Import converter service
+// Import Modules
+import { Subject } from 'rxjs/Subject'; 
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+// Import others services
+import { SnackBarService } from 'src/app/services/snackbar.service';
 import { ConverterService } from 'src/app/services/converter.service';
 
 
-import { Injectable } from '@angular/core';
-import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +28,8 @@ export class ExpenseService {
   ];
 
   constructor(private httpClient: HttpClient,
-              private converterService: ConverterService) { 
+              private converterService: ConverterService,
+              private snackBarService: SnackBarService) { 
   
   }
   
@@ -40,11 +46,14 @@ export class ExpenseService {
     //Finally we refresh view with updated expenses
     this.getExpensesFromServer();
     this.emitExpenses();
+    this.snackBarService.openSnackBar("Expenses has been created !");
   }
 
   deleteExpense(id) {
     this.deleteExpenseOnServer(id);
     this.getExpensesFromServer();
+    this.snackBarService.openSnackBar("Expenses has been deleted !");
+
   }
 
   //Method to transform data get by user before sending it to server
@@ -81,7 +90,9 @@ export class ExpenseService {
             this.emitExpenses();
           },
           (error) => {
-            console.log('Erreur de chargement', error);
+            this.snackBarService.openSnackBar('An error happened when getting expenses from the server, please retry')
+            //This should be logged somewhere but for this project i simply added a console trace
+            console.trace(error);
           }
         );
     }
@@ -95,7 +106,8 @@ export class ExpenseService {
             console.log('Saved')
           },
           (error) => {
-            console.log('Error', error)
+            this.snackBarService.openSnackBar('An error happened during expense creation, please retry')
+            console.trace(error);
           }
         )
     }
@@ -109,7 +121,8 @@ export class ExpenseService {
           console.log('Deleted')
         },
         (error) => {
-          console.log('Error', error)
+          this.snackBarService.openSnackBar('An error happened during expense deletion, please retry')
+          console.trace(error);
         }
       ) 
     }
