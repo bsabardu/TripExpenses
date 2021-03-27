@@ -8,6 +8,7 @@ import { ConverterService } from 'src/app/services/converter.service';
 
 
 import { Injectable } from '@angular/core';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 
 @Injectable({
   providedIn: 'root'
@@ -32,13 +33,44 @@ export class ExpenseService {
 
 
   addExpense(expense) {
-    let enrichedExpense: Expense = this.enrichExpenseData(expense);
-    this.expenses.push(enrichedExpense);
+    //First we enriche the expense
+    let enrichedExpense = this.enrichExpenseData(expense);
+    //Then we send to serveur
     this.saveExpensesToServer(enrichedExpense);
+    //Finally we refresh view with updated expenses
+    this.getExpensesFromServer();
     this.emitExpenses();
   }
 
+  deleteExpense(id) {
+    this.deleteExpenseOnServer(id);
+    this.getExpensesFromServer();
+  }
 
+  //Method to transform data get by user before sending it to server
+    //We use the converterService to convert orginal amount before sending it to DB
+  enrichExpenseData(expense) {
+    const { purchasedOn, nature, comment, originalAmount, currency } = expense;
+    let enrichExpense =  {
+      purchasedOn,
+      nature,
+      comment,
+      originalAmount: {
+        amount: originalAmount,
+        currency: currency
+      },
+      convertedAmount: {
+        amount: (originalAmount / this.converterService.getRatesOfCurrency(currency)),
+        currency: 'EUR'
+      },
+    }
+    return enrichExpense
+  }
+
+
+  // ALL CRUD METHOD
+
+    // Read
     getExpensesFromServer() {
       this.httpClient
       //API BASE URL are stored in env file
@@ -53,26 +85,8 @@ export class ExpenseService {
           }
         );
     }
-
-    //Method to transform data get by user before sending it to server
-    enrichExpenseData(expense) {
-      const { purchasedOn, nature, comment, originalAmount, currency } = expense;
-      let enrichExpense =  {
-        purchasedOn,
-        nature,
-        comment,
-        originalAmount: {
-          amount: originalAmount,
-          currency: currency
-        },
-        convertedAmount: {
-          amount: (originalAmount / this.converterService.getRatesOfCurrency(currency)),
-          currency: 'EUR'
-        },
-      }
-      return enrichExpense
-    }
-
+    
+    // Create
     saveExpensesToServer(expense) {
       this.httpClient
         .post(`${environment.API_BASE_URL}/api/expenseItems`, expense)
@@ -85,4 +99,19 @@ export class ExpenseService {
           }
         )
     }
+
+    // Delete
+    deleteExpenseOnServer(expenseId) {
+      this.httpClient
+      .delete(`${environment.API_BASE_URL}/api/expenseItems/${expenseId}`)
+      .subscribe(
+        () => {
+          console.log('Deleted')
+        },
+        (error) => {
+          console.log('Error', error)
+        }
+      ) 
+    }
+
 }

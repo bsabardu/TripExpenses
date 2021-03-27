@@ -3,7 +3,7 @@ import { Amount } from 'src/app/models/Amount.model';
 export class Expense {
 
     constructor (
-        // public id: string,
+        public id: string,
         public purchasedOn: string,
         public nature: string,
         public originalAmount: Amount,

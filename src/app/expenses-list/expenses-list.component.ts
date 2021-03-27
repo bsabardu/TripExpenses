@@ -13,7 +13,7 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
   expenses: Expense[];
   expenseSubscription: Subscription;
 
-  columnsToDisplay = ['purchasedOn','nature','originalAmount', 'convertedAmount', 'comment', 'createdAt','lastModifiedAt' ];
+  columnsToDisplay = ['purchasedOn','nature','originalAmount', 'convertedAmount', 'comment', 'createdAt','lastModifiedAt', 'actions' ];
 
   constructor(private expenseService: ExpenseService) { }
 
@@ -33,4 +33,8 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
     this.expenseSubscription.unsubscribe();
   }
 
+  //Method to delete an expense using its uid
+  onDelete(id) {
+    this.expenseService.deleteExpense(id);
+  }
 }

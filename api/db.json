@@ -31,22 +31,6 @@
       "createdAt": "2021-03-27T10:38:20.840Z",
       "lastModifiedAt": "2021-03-27T10:38:20.840Z",
       "id": "4b66341b-4bfa-45ad-9423-5c2e9bdc9509"
-    },
-    {
-      "purchasedOn": "rzer",
-      "nature": "ezr",
-      "comment": "ezrezr",
-      "originalAmount": {
-        "amount": 24,
-        "currency": "CHF"
-      },
-      "convertedAmount": {
-        "amount": 21.641118124436428,
-        "currency": "EUR"
-      },
-      "createdAt": "2021-03-27T10:42:41.453Z",
-      "lastModifiedAt": "2021-03-27T10:42:41.453Z",
-      "id": "d579336c-073b-4c0b-954e-f62eba6357b5"
     }
   ]
 }
