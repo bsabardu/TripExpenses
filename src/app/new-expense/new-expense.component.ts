@@ -47,7 +47,6 @@ export class NewExpenseComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     const currentExpense = this.expenseService.getExpenseData();
-    console.log(currentExpense);
 
     if (currentExpense){
       this.expenseForm.patchValue({

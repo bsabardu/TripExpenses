@@ -66,6 +66,11 @@
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
   </mat-table>
+  <mat-paginator [length]="length"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              (page)="getServerData($event)">
+</mat-paginator>
   </mat-card>
   
   

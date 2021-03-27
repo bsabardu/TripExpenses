@@ -17,20 +17,404 @@
       "lastModifiedAt": "2018-12-05T14:00:34.435154Z"
     },
     {
-      "purchasedOn": "2021-03-10T23:00:00.000Z",
-      "nature": "Ok",
-      "comment": "Cool",
+      "purchasedOn": "1990-12-12",
+      "nature": "Bilo",
+      "comment": "Oui et oui",
       "originalAmount": {
-        "amount": 13,
-        "currency": "EUR"
+        "amount": 45,
+        "currency": "USD"
       },
       "convertedAmount": {
-        "amount": null,
+        "amount": 38.19385503310134,
         "currency": "EUR"
       },
-      "createdAt": "2021-03-27T17:55:13.771Z",
-      "lastModifiedAt": "2021-03-27T17:55:13.771Z",
-      "id": "b9e0f780-0d76-4032-baef-95ea68d340e7"
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Opo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Kio",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Bilo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Opo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Kio",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Bilo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Opo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Kio",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "id": "727212a0-4d73-4615-bd23-d7df6f562491",
+      "purchasedOn": "2018-12-04",
+      "nature": "Restaurant",
+      "originalAmount": {
+        "amount": 17,
+        "currency": "GBP"
+      },
+      "convertedAmount": {
+        "amount": 19.09,
+        "currency": "EUR"
+      },
+      "comment": "Mission de 5 jours à Londres",
+      "createdAt": "2018-12-05T14:00:34.435154Z",
+      "lastModifiedAt": "2018-12-05T14:00:34.435154Z"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Bilo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Opo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "id": "727212a0-4d73-4615-bd23-d7df6f562491",
+      "purchasedOn": "2018-12-04",
+      "nature": "Restaurant",
+      "originalAmount": {
+        "amount": 17,
+        "currency": "GBP"
+      },
+      "convertedAmount": {
+        "amount": 19.09,
+        "currency": "EUR"
+      },
+      "comment": "Mission de 5 jours à Londres",
+      "createdAt": "2018-12-05T14:00:34.435154Z",
+      "lastModifiedAt": "2018-12-05T14:00:34.435154Z"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Bilo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Opo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Kio",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Bilo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Opo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Kio",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Bilo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Opo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Kio",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "id": "727212a0-4d73-4615-bd23-d7df6f562491",
+      "purchasedOn": "2018-12-04",
+      "nature": "Restaurant",
+      "originalAmount": {
+        "amount": 17,
+        "currency": "GBP"
+      },
+      "convertedAmount": {
+        "amount": 19.09,
+        "currency": "EUR"
+      },
+      "comment": "Mission de 5 jours à Londres",
+      "createdAt": "2018-12-05T14:00:34.435154Z",
+      "lastModifiedAt": "2018-12-05T14:00:34.435154Z"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Bilo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
+    },
+    {
+      "purchasedOn": "1990-12-12",
+      "nature": "Opo",
+      "comment": "Oui et oui",
+      "originalAmount": {
+        "amount": 45,
+        "currency": "USD"
+      },
+      "convertedAmount": {
+        "amount": 38.19385503310134,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T22:25:46.072Z",
+      "lastModifiedAt": "2021-03-27T22:25:46.072Z",
+      "id": "bb0b4a91-6fe5-4184-a5c6-9a7b5c5b2b8f"
     }
   ]
 }

@@ -30,6 +30,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatDrawer} from '@angular/material/sidenav';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 // == Import Services
 import { ExpenseService } from 'src/app/services/expense.service';
@@ -66,7 +68,8 @@ import { SnackBarService } from 'src/app/services/snackbar.service';
     MatSnackBarModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatPaginatorModule
   ],
   providers: [
     ExpenseService,

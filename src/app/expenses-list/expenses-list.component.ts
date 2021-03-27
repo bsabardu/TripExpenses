@@ -4,6 +4,7 @@ import { Expense } from 'src/app/models/Expense.model';
 import { ExpenseService } from 'src/app/services/expense.service';
 import { DialogService } from 'src/app/services/dialog.service';
 import { DrawerService } from 'src/app/services/drawer.service';
+import { PageEvent } from '@angular/material/paginator';
 
 
 @Component({
@@ -16,6 +17,14 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
   expenses: Expense[];
   expenseSubscription: Subscription;
 
+  // Pagination attributes
+  pageEvent: PageEvent;
+  datasource: null;
+  pageIndex:number;
+  pageSize:number;
+  length:number;
+
+
   columnsToDisplay = ['purchasedOn', 'nature', 'originalAmount', 'convertedAmount', 'comment', 'actions' ];
 
   constructor(private expenseService: ExpenseService,
@@ -25,6 +34,7 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
 
   // On init we subscribe to expenseService to get any update on expenses then adapt the local object
   ngOnInit(): void {
+    this.updateExpensesLength();
     this.expenseService.getExpensesFromServer();
     this.expenseSubscription = this.expenseService.expenseSubject.subscribe(
       (expenses: Expense[]) => {
@@ -32,6 +42,11 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
       }
     );
     this.expenseService.emitExpenses();
+  }
+
+  async updateExpensesLength(){
+    await this.expenseService.setTotalExpensesOnDB();
+    this.length = this.expenseService.getTotalExpensesOnDB();
   }
 
   // Destroy subscrition as the component is destroy to avoid unlimited subscription
@@ -53,5 +68,9 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
 
   onEdit(expenseId): void {
     this.drawerService.open();
+  }
+
+  public getServerData(event?:PageEvent){
+    this.expenseService.getExpensesFromServer(event);
   }
 }

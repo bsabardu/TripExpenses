@@ -8,10 +8,13 @@ import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs/Subject';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 
 // Import others services
 import { SnackBarService } from 'src/app/services/snackbar.service';
 import { ConverterService } from 'src/app/services/converter.service';
+import { Observable } from 'rxjs';
+import { RepositionScrollStrategy } from '@angular/cdk/overlay';
 
 
 
@@ -28,6 +31,8 @@ export class ExpenseService {
   ];
 
   private currentExpense: any;
+
+  private totalExpensesOnDB: number;
 
   constructor(private httpClient: HttpClient,
     private converterService: ConverterService,
@@ -90,13 +95,40 @@ export class ExpenseService {
     return this.currentExpense;
   }
 
+  //Number of expenses in DB Setter
+  async setTotalExpensesOnDB(){
+    const promise = this.httpClient.get<any[]>(`${environment.API_BASE_URL}/api/expenseItems`).toPromise();
+    const response = await promise;
+    this.totalExpensesOnDB = response.length;
+  }
+  //Number of expenses in DB getter
+  getTotalExpensesOnDB(){
+    return this.totalExpensesOnDB;
+  }
+
   // ALL CRUD METHOD
 
-  // Read
-  getExpensesFromServer(): void {
+  // Read -- Read method use pagniation
+  getExpensesFromServer(event?: PageEvent): void {
+   
+    //PAGINATION API Query Constructor -- Query is different if we have an PageChange event or not (init)
+    //If event we get page data from event and construct the query
+    //If last page the limit of the query is the last expenses to get, else its pageSize
+    
+    let apiQuery = null;
+    if(event){
+      const {pageIndex, pageSize, length} = event;
+      const lastPage = (pageIndex+1) * pageSize > length;
+      const limit = lastPage ? length - pageIndex * pageSize : pageSize;
+      apiQuery = `?_page=${pageIndex}&_limit=${limit}`      
+    }
+    else {
+      apiQuery = `?_page=${0}&_limit=${10}`
+    }
+
     this.httpClient
       // API BASE URL are stored in env file
-      .get<any[]>(`${environment.API_BASE_URL}/api/expenseItems`)
+      .get<any[]>(`${environment.API_BASE_URL}/api/expenseItems${apiQuery}`)
       .subscribe(
         (response) => {
           this.expenses = response;
