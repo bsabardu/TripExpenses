@@ -3,6 +3,9 @@ import { Subject } from 'rxjs/Subject';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
+// Import converter service
+import { ConverterService } from 'src/app/services/converter.service';
+
 
 import { Injectable } from '@angular/core';
 
@@ -18,17 +21,20 @@ export class ExpenseService {
   private expenses: Expense[] = [
   ];
 
-  //Use this function when you need to 
+  constructor(private httpClient: HttpClient,
+              private converterService: ConverterService) { 
+  
+  }
+  
   emitExpenses() {
     this.expenseSubject.next(this.expenses.slice());
   }
 
-  constructor(private httpClient: HttpClient) { 
-  
-  }
 
-  addExpense(expense: Expense) {
-    this.expenses.push(expense);
+  addExpense(expense) {
+    let enrichedExpense: Expense = this.enrichExpenseData(expense);
+    this.expenses.push(enrichedExpense);
+    this.saveExpensesToServer(enrichedExpense);
     this.emitExpenses();
   }
 
@@ -48,9 +54,28 @@ export class ExpenseService {
         );
     }
 
-    saveAppareilsToServer() {
+    //Method to transform data get by user before sending it to server
+    enrichExpenseData(expense) {
+      const { purchasedOn, nature, comment, originalAmount, currency } = expense;
+      let enrichExpense =  {
+        purchasedOn,
+        nature,
+        comment,
+        originalAmount: {
+          amount: originalAmount,
+          currency: currency
+        },
+        convertedAmount: {
+          amount: (originalAmount / this.converterService.getRatesOfCurrency(currency)),
+          currency: 'EUR'
+        },
+      }
+      return enrichExpense
+    }
+
+    saveExpensesToServer(expense) {
       this.httpClient
-        .put(`${environment.API_BASE_URL}/api/expenseItems`, this.expenses)
+        .post(`${environment.API_BASE_URL}/api/expenseItems`, expense)
         .subscribe(
           () => {
             console.log('Saved')

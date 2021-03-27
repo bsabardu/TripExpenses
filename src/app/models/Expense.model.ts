@@ -6,9 +6,8 @@ export class Expense {
         // public id: string,
         public purchasedOn: string,
         public nature: string,
-        public originalAmount: number,
-        public currency: string,
-        // public convertedAmount: Amount,
+        public originalAmount: Amount,
+        public convertedAmount: Amount,
         public comment: string,
         // public createdAt: string,
         // public lastModifiedAt: string

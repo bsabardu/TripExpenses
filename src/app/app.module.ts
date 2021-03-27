@@ -30,7 +30,8 @@ import {MatSelectModule} from '@angular/material/select';
 
 // == Import Services
 import { ExpenseService } from 'src/app/services/expense.service';
-  // we are using a service to handle sidenav behavior. that might be overkill but i didn't find any better solution as open and close button are not in the same component
+import { ConverterService } from 'src/app/services/converter.service';  
+// we are using a service to handle sidenav behavior. that might be overkill but i didn't find any better solution as open and close button are not in the same component
 import { SideNavService } from 'src/app/services/sidenav.service';
 
 @NgModule({
@@ -47,7 +48,7 @@ import { SideNavService } from 'src/app/services/sidenav.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    
     //Material
     MatToolbarModule,
     MatTableModule,
@@ -61,6 +62,7 @@ import { SideNavService } from 'src/app/services/sidenav.service';
   ],
   providers: [
     ExpenseService,
+    ConverterService,
     SideNavService
   ],
   bootstrap: [AppComponent]

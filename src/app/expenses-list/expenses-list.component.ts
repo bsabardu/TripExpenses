@@ -13,7 +13,7 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
   expenses: Expense[];
   expenseSubscription: Subscription;
 
-  columnsToDisplay = ['purchasedOn','nature','originalAmount', 'comment', 'createdAt','lastModifiedAt' ];
+  columnsToDisplay = ['purchasedOn','nature','originalAmount', 'convertedAmount', 'comment', 'createdAt','lastModifiedAt' ];
 
   constructor(private expenseService: ExpenseService) { }
 
