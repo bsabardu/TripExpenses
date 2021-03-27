@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ExpensesListComponent } from './expenses-list/expenses-list.component';
 import { NewExpenseComponent } from './new-expense/new-expense.component';
+import { DialogComponent } from './dialog/dialog.component';
 
   // Material Components
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -25,6 +26,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 
@@ -32,9 +35,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 // == Import Services
 import { ExpenseService } from 'src/app/services/expense.service';
 import { ConverterService } from 'src/app/services/converter.service';  
-// we are using a service to handle sidenav behavior. that might be overkill but i didn't find any better solution as open and close button are not in the same component
 import { SideNavService } from 'src/app/services/sidenav.service';
-import { SnackBarService } from 'src/app/services/snackbar.service'
+import { SnackBarService } from 'src/app/services/snackbar.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { SnackBarService } from 'src/app/services/snackbar.service'
     HeaderComponent,
     ExpensesListComponent,
     NewExpenseComponent,
+    DialogComponent,
 
   ],
   imports: [
@@ -62,6 +65,7 @@ import { SnackBarService } from 'src/app/services/snackbar.service'
     MatInputModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [
     ExpenseService,
@@ -69,6 +73,8 @@ import { SnackBarService } from 'src/app/services/snackbar.service'
     SideNavService,
     SnackBarService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
+  
 })
 export class AppModule { }

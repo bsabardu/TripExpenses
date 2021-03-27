@@ -2,6 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Expense } from 'src/app/models/Expense.model';
 import { ExpenseService } from 'src/app/services/expense.service';
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import { DialogComponent } from '../dialog/dialog.component';
+import { DialogService } from 'src/app/services/dialog.service';
+
 
 @Component({
   selector: 'app-expenses-list',
@@ -15,7 +19,9 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
 
   columnsToDisplay = ['purchasedOn','nature','originalAmount', 'convertedAmount', 'comment', 'createdAt','lastModifiedAt', 'actions' ];
 
-  constructor(private expenseService: ExpenseService) { }
+  constructor(private expenseService: ExpenseService,
+              private dialogService: DialogService,
+              private dialog: MatDialog) { }
 
   //On init we subscribe to expenseService to get any update on expenses then adapt the local object
   ngOnInit(): void {
@@ -34,7 +40,14 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
   }
 
   //Method to delete an expense using its uid
-  onDelete(id) {
-    this.expenseService.deleteExpense(id);
+  //This method works with a dedicated Dialog service
+  onDelete(expenseId) {
+    this.dialogService.openDialog(
+      "Confirm Deletion",
+      "Please confirm the expense deletion. It cannot be recovered",
+      () => {this.expenseService.deleteExpense(expenseId)},
+      "Confirm",
+      true
+    );
   }
 }
