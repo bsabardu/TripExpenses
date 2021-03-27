@@ -4,7 +4,7 @@
     <form class="form" [formGroup]="expenseForm" (ngSubmit)="onSubmitForm()">
       <mat-form-field appearance="outline">
         <mat-label>Purchased date</mat-label>
-        <input matInput formControlName="purchasedOn">
+        <input type="date" matInput formControlName="purchasedOn">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Nature</mat-label>

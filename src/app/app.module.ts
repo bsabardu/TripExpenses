@@ -1,4 +1,4 @@
-// == Import NG Modules 
+// == Import NG Modules
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,26 +16,25 @@ import { NewExpenseComponent } from './new-expense/new-expense.component';
 import { DialogComponent } from './dialog/dialog.component';
 
   // Material Components
-import { MatToolbarModule } from "@angular/material/toolbar";
+import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
-
-
-
-
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatDrawer} from '@angular/material/sidenav';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 // == Import Services
 import { ExpenseService } from 'src/app/services/expense.service';
-import { ConverterService } from 'src/app/services/converter.service';  
-import { SideNavService } from 'src/app/services/sidenav.service';
+import { ConverterService } from 'src/app/services/converter.service';
+import { DrawerService } from 'src/app/services/drawer.service';
 import { SnackBarService } from 'src/app/services/snackbar.service';
 
 @NgModule({
@@ -53,8 +52,8 @@ import { SnackBarService } from 'src/app/services/snackbar.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
-    //Material
+
+    // Material
     MatToolbarModule,
     MatTableModule,
     MatCardModule,
@@ -65,16 +64,19 @@ import { SnackBarService } from 'src/app/services/snackbar.service';
     MatInputModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     ExpenseService,
     ConverterService,
-    SideNavService,
-    SnackBarService
+    DrawerService,
+    SnackBarService,
+    MatDrawer,
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogComponent]
-  
+
 })
 export class AppModule { }

@@ -15,6 +15,22 @@
       "comment": "Mission de 5 jours à Londres",
       "createdAt": "2018-12-05T14:00:34.435154Z",
       "lastModifiedAt": "2018-12-05T14:00:34.435154Z"
+    },
+    {
+      "purchasedOn": "2021-03-10T23:00:00.000Z",
+      "nature": "Ok",
+      "comment": "Cool",
+      "originalAmount": {
+        "amount": 13,
+        "currency": "EUR"
+      },
+      "convertedAmount": {
+        "amount": null,
+        "currency": "EUR"
+      },
+      "createdAt": "2021-03-27T17:55:13.771Z",
+      "lastModifiedAt": "2021-03-27T17:55:13.771Z",
+      "id": "b9e0f780-0d76-4032-baef-95ea68d340e7"
     }
   ]
 }

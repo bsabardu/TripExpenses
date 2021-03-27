@@ -1,12 +1,12 @@
 <main class="main-container">
   <app-header></app-header>
   <mat-drawer-container autosize>
-    <mat-drawer #drawer [opened]="isDrawerOpened" mode="side">
+    <mat-drawer #drawer autoFocus mode="side">
       <app-new-expense></app-new-expense>
     </mat-drawer>
     <mat-drawer-content>
       <app-expenses-list></app-expenses-list>
-      <button mat-fab class="fab-float-bottom-right" color="primary" (click)="onOpen()">
+      <button mat-fab class="fab-float-bottom-right" color="primary" (click)="drawer.open()">
         <mat-icon>add</mat-icon>
       </button>
     </mat-drawer-content>
