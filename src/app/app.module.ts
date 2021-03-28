@@ -31,6 +31,7 @@ import { MatDrawer} from '@angular/material/sidenav';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 
 // == Import Services
@@ -69,7 +70,9 @@ import { SnackBarService } from 'src/app/services/snackbar.service';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
+
   ],
   providers: [
     ExpenseService,

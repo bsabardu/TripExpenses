@@ -28,7 +28,7 @@ export class ConverterService {
               this.currencyApiResponse = response;
             },
             (error) => {
-              console.log('Erreur de chargement', error);
+              console.trace('Erreur de chargement', error);
             }
           );
     }

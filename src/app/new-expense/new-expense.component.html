@@ -2,31 +2,40 @@
   <div class="form-wrapper">
     <h2 class="mat-title">Add new expense</h2>
     <form class="form" [formGroup]="expenseForm" (ngSubmit)="onSubmitForm()">
-      <mat-form-field appearance="outline">
+      <input type="hidden" formControlName="id">
+      <mat-form-field appearance="outline" [style.width.px]=200>
         <mat-label>Purchased date</mat-label>
         <input type="date" matInput formControlName="purchasedOn">
+        <mat-error>Purchased date is required</mat-error>
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" hintLabel="Max 120 characters" [style.width.px]=300>
         <mat-label>Nature</mat-label>
-        <input matInput placeholder="Ex: Restaurant, Car rent...." formControlName="nature">
+        <input (blur)="setErrors()" #natureInput matInput placeholder="Ex: Restaurant, Car rent...." formControlName="nature">
+        <mat-error>{{natureErrorMsg}}</mat-error>
+        <mat-hint align="end">{{natureInput.value?.length || 0}}/120</mat-hint>
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" [style.width.px]=200>
         <mat-label>Amount</mat-label>
         <input type="number" matInput formControlName="originalAmount">
+        <mat-error>Amount is required</mat-error>
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" [style.width.px]=200>
         <mat-label>Currency</mat-label>
-        <mat-select [(value)]="selected" formControlName="currency">
+        <mat-select formControlName="currency">
           <mat-option *ngFor="let currency of currencies" [value]="currency.tag">{{currency.name}}</mat-option>
         </mat-select>
+        <mat-error>Currency is required</mat-error>
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" hintLabel="Max 600 characters" [style.width.px]=400>
         <mat-label>Comment</mat-label>
-        <textarea matInput placeholder="Add a comment on this expense" formControlName="comment"></textarea>
+        <textarea (blur)="setErrors()" #commentInput matInput placeholder="Add a comment on this expense" formControlName="comment"></textarea>
+        <mat-hint align="end">{{commentInput.value?.length || 0}}/600</mat-hint>
+        <mat-error>{{commentErrorMsg}}</mat-error>
       </mat-form-field>
       <div class="button-group">
-          <button mat-raised-button color="primary" type="submit">Create expense</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!expenseForm.valid" >Create expense</button>
           <button mat-flat-button color="basic" type="button" (click)="onCancel()">Cancel</button>
       </div>
+      <p></p>
     </form>
     </div>

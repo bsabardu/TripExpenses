@@ -1,5 +1,5 @@
 {
-  "name": "lucca-trip-expenses",
+  "name": "trip-expenses",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

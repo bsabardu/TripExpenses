@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Expense } from 'src/app/models/Expense.model';
 import { ExpenseService } from 'src/app/services/expense.service';
+import { FormService } from 'src/app/services/form.service';
 import { DialogService } from 'src/app/services/dialog.service';
 import { DrawerService } from 'src/app/services/drawer.service';
 import { PageEvent } from '@angular/material/paginator';
@@ -20,9 +21,9 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
   // Pagination attributes
   pageEvent: PageEvent;
   datasource: null;
-  pageIndex:number;
-  pageSize:number;
-  length:number;
+  pageIndex: number;
+  pageSize: number;
+  length: number;
 
 
   columnsToDisplay = ['purchasedOn', 'nature', 'originalAmount', 'convertedAmount', 'comment', 'actions' ];
@@ -30,6 +31,7 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
   constructor(private expenseService: ExpenseService,
               private dialogService: DialogService,
               private drawerService: DrawerService,
+              private formService: FormService,
    ) { }
 
   // On init we subscribe to expenseService to get any update on expenses then adapt the local object
@@ -44,7 +46,7 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
     this.expenseService.emitExpenses();
   }
 
-  async updateExpensesLength(){
+  async updateExpensesLength(): Promise<void> {
     await this.expenseService.setTotalExpensesOnDB();
     this.length = this.expenseService.getTotalExpensesOnDB();
   }
@@ -68,9 +70,11 @@ export class ExpensesListComponent implements OnInit, OnDestroy {
 
   onEdit(expenseId): void {
     this.drawerService.open();
+    this.expenseService.setCurrentExpense(expenseId);
+    this.formService.fillForm();
   }
 
-  public getServerData(event?:PageEvent){
+  public getServerData(event?:PageEvent): void {
     this.expenseService.getExpensesFromServer(event);
   }
 }

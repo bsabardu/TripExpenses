@@ -25,7 +25,7 @@
     <!-- Converted Amout  -->
     <ng-container matColumnDef="convertedAmount">
       <mat-header-cell *matHeaderCellDef> Converted Amount </mat-header-cell>
-      <mat-cell *matCellDef="let expense"> {{expense.convertedAmount.amount | currency:expense.convertedAmount.currency }}</mat-cell>
+      <mat-cell *matCellDef="let expense"> {{(expense.convertedAmount.amount | currency:expense.convertedAmount.currency) || '-' }}</mat-cell>
     </ng-container>
   
     <!-- Comment -->
