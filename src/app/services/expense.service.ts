@@ -1,3 +1,5 @@
+// tslint:disable: no-console
+
 // Import Expense Model
 import { Expense } from 'src/app/models/Expense.model';
 
@@ -14,9 +16,6 @@ import { PageEvent } from '@angular/material/paginator';
 import { SnackBarService } from 'src/app/services/snackbar.service';
 import { ConverterService } from 'src/app/services/converter.service';
 import { Observable } from 'rxjs';
-import { RepositionScrollStrategy } from '@angular/cdk/overlay';
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +30,6 @@ export class ExpenseService {
   ];
 
   private currentExpense: any;
-
   private totalExpensesOnDB: number;
 
   constructor(private httpClient: HttpClient,
@@ -39,6 +37,7 @@ export class ExpenseService {
               private snackBarService: SnackBarService) {
 
   }
+
 
   emitExpenses(): void {
     this.expenseSubject.next(this.expenses.slice());
@@ -49,9 +48,6 @@ export class ExpenseService {
     const enrichedExpense = this.enrichExpenseData(expense);
     // Then we send to serveur
     this.saveExpensesToServer(enrichedExpense);
-    // Finally we refresh view with updated expenses
-    this.getExpensesFromServer();
-    this.emitExpenses();
     this.snackBarService.openSnackBar('Expenses has been created !');
   }
 
@@ -60,18 +56,13 @@ export class ExpenseService {
     const enrichedExpense = this.enrichExpenseData(expense);
     // Then we send to serveur
     this.updateExpensesToServer(enrichedExpense);
-    // Finally we refresh view with updated expenses
-    this.getExpensesFromServer();
-    this.emitExpenses();
     this.snackBarService.openSnackBar('Expenses has been updated !');
   }
 
 
   deleteExpense(id): void {
     this.deleteExpenseOnServer(id);
-    this.getExpensesFromServer();
     this.snackBarService.openSnackBar('Expenses has been deleted !');
-
   }
 
   // Method to transform data get by user before sending it to server
@@ -102,12 +93,10 @@ export class ExpenseService {
     ));
     this.currentExpense = currentExpense;
   }
-
   // Current Expense Getter
   getCurrentExpense(): Expense {
     return this.currentExpense;
   }
-
   // Number of expenses in DB Setter
   async setTotalExpensesOnDB(): Promise<void>{
     const promise = this.httpClient.get<any[]>(`${environment.API_BASE_URL}/api/expenseItems`).toPromise();
@@ -133,10 +122,10 @@ export class ExpenseService {
       const {pageIndex, pageSize, length} = event;
       const lastPage = (pageIndex + 1) * pageSize > length;
       const limit = lastPage ? length - pageIndex * pageSize : pageSize;
-      apiQuery = `?_page=${pageIndex}&_limit=${limit}`
+      apiQuery = `?_page=${pageIndex + 1}&_limit=${limit}`;
     }
     else {
-      apiQuery = `?_page=${0}&_limit=${10}`;
+      apiQuery = `?_page=${1}&_limit=${10}`;
     }
 
     this.httpClient
@@ -178,6 +167,8 @@ export class ExpenseService {
       .post(`${environment.API_BASE_URL}/api/expenseItems`, expense)
       .subscribe(
         () => {
+          // After creation we get new list from server
+          this.getExpensesFromServer();
         },
         (error) => {
           this.snackBarService.openSnackBar('An error happened during expense edition, please retry');
@@ -192,6 +183,8 @@ export class ExpenseService {
       .put(`${environment.API_BASE_URL}/api/expenseItems/${expense.id}`, expense)
       .subscribe(
         () => {
+          // After update we get new list from server
+          this.getExpensesFromServer();
         },
         (error) => {
           this.snackBarService.openSnackBar('An error happened during expense creation, please retry');
@@ -206,7 +199,8 @@ export class ExpenseService {
       .delete(`${environment.API_BASE_URL}/api/expenseItems/${expenseId}`)
       .subscribe(
         () => {
-          console.log('Deleted');
+          // After deletion we get new list from server
+          this.getExpensesFromServer();
         },
         (error) => {
           this.snackBarService.openSnackBar('An error happened during expense deletion, please retry');

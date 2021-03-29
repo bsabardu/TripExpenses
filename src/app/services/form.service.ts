@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ExpenseService } from 'src/app/services/expense.service';
 
 import { Injectable } from '@angular/core';
@@ -13,6 +13,7 @@ import { ConverterService } from 'src/app/services/converter.service';
 export class FormService {
 
     public expenseForm: FormGroup;
+
 
 
     // Currencies array, (handle it in a dedicated service seams overkilled here)
@@ -48,7 +49,7 @@ export class FormService {
             nature: ['', [Validators.required, Validators.maxLength(120)]],
             originalAmount: ['', Validators.required],
             currency: ['EUR', Validators.required],
-            comment: ['', [Validators.required, Validators.maxLength(600)]]
+            comment: ['', [Validators.maxLength(600)]]
         });
         this.converterService.getRatesFromExternalApi();
     }
@@ -60,6 +61,7 @@ export class FormService {
         // Check if id exist if yes update if not addExpense
         if (formValue.id) {
             this.expenseService.updateExpense(formValue);
+
         }
         else {
             this.expenseService.addExpense(formValue);
