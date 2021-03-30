@@ -1,35 +1,42 @@
 // tslint:disable: no-console
 
-// Import Expense Model
-import { Expense } from 'src/app/models/Expense.model';
+// -- IMPORTS -- //
 
-// Import env vars
-import { environment } from 'src/environments/environment';
-
-// Import Modules
+  // NG Modules
 import { Subject } from 'rxjs/Subject';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
-// Import others services
+  // Custom Services
 import { SnackBarService } from 'src/app/services/snackbar.service';
 import { ConverterService } from 'src/app/services/converter.service';
-import { Observable } from 'rxjs';
+
+  // .ENV
+import { environment } from 'src/environments/environment';
+
+  // Import Expense Model
+import { Expense } from 'src/app/models/Expense.model';
+import { CurrencyPipe } from '@angular/common';
+
+// ----
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExpenseService {
 
-
-  // Create a subject of expense to be observed by expense list component
+  // Create a subject of expense to be observed by expenses-list component
   expenseSubject = new Subject<Expense[]>();
 
+  // Private array of expenses
   private expenses: Expense[] = [
   ];
 
+  // Selected expense, usefull to pre-fill the form
   private currentExpense: any;
+
+  // Selected expense, usefull to pre-fill the form
   private totalExpensesOnDB: number;
 
   constructor(private httpClient: HttpClient,
@@ -43,93 +50,118 @@ export class ExpenseService {
     this.expenseSubject.next(this.expenses.slice());
   }
 
+
+  /**
+   * @desc Method handling expense creation.
+   * Use the enrich expense method to enrich data before sending it to server
+   * Then send it to server and display a snackbar
+   * @param expense - formValues coming from form service
+   */
   addExpense(expense): void {
-    // First we enrich the expense
     const enrichedExpense = this.enrichExpenseData(expense);
-    // Then we send to serveur
     this.saveExpensesToServer(enrichedExpense);
     this.snackBarService.openSnackBar('Expenses has been created !');
   }
 
+
+  /**
+   * @desc Method handling expense edition.
+   * Use the enrich expense method to enrich data before sending it to server
+   * Then send it to server and display a snackbar
+   * @param expense - formValues coming from form service
+   */
   updateExpense(expense): void {
-    // First we enrich the expense
     const enrichedExpense = this.enrichExpenseData(expense);
-    // Then we send to serveur
     this.updateExpensesToServer(enrichedExpense);
     this.snackBarService.openSnackBar('Expenses has been updated !');
   }
 
-
-  deleteExpense(id): void {
+  /**
+   * @desc Method handling expense deleting.
+   * Delete on server using id and display a snackbar
+   * @param id - id of the expense to delete
+   */
+  deleteExpense(id: string): void {
     this.deleteExpenseOnServer(id);
     this.snackBarService.openSnackBar('Expenses has been deleted !');
   }
 
-  // Method to transform data get by user before sending it to server
-  // We use the converterService to convert orginal amount before sending it to DB
+  /**
+   * @desc Method used to enrich expense data coming from From service before sending it to servers
+   * We use the converter service to get the converted amount.
+   * @param expense - formValues coming from form service
+   * @returns - an enriched Expense object
+   */
   enrichExpenseData(expense): object {
-    const { id, purchasedOn, nature, comment, originalAmount, currency } = expense;
-    const enrichExpense = {
-      id,
-      purchasedOn,
-      nature,
-      comment,
+    return {
+      ...expense,
       originalAmount: {
-        amount: originalAmount,
-        currency
+        amount: expense.originalAmount,
+        currency: expense.currency
       },
       convertedAmount: {
-        amount: (originalAmount / this.converterService.getRatesOfCurrency(currency)),
-        currency: 'EUR'
+        amount: (expense.originalAmount / this.converterService.getRatesOfCurrency(expense.currency)),
+        currency: expense.currency
       },
     };
-    return enrichExpense;
   }
 
-  // Current Expense Setter
+  // CURRENT EXPENSE SETTER & GETTER //
+
   setCurrentExpense(expenseId): void {
     const currentExpense = this.expenses.find((expense) => (
       expense.id === expenseId
     ));
     this.currentExpense = currentExpense;
   }
-  // Current Expense Getter
+
   getCurrentExpense(): Expense {
     return this.currentExpense;
   }
-  // Number of expenses in DB Setter
+
+  // NUMBER OF EXPENSES IN DB SETTER & GETTER //
+
+  /**
+   * @desc Method calling the DB to get the number of stored expenses
+   * @async
+   */
   async setTotalExpensesOnDB(): Promise<void>{
     const promise = this.httpClient.get<any[]>(`${environment.API_BASE_URL}/api/expenseItems`).toPromise();
     const response = await promise;
     this.totalExpensesOnDB = response.length;
   }
-  // Number of expenses in DB getter
+
   getTotalExpensesOnDB(): number {
     return this.totalExpensesOnDB;
   }
 
-  // ALL CRUD METHOD
 
-  // Read -- Read method use pagniation
+
+  // EXPENSES API CRUD METHODS
+
+  /** READ
+   * @desc Get expenses from server. Expenses can be filterd by a Page Event (for pagination)
+   * API URL is built dynamically with base_url stored in env file and params
+   * @param event - PageEvent sent on change page event of paginator component
+   */
   getExpensesFromServer(event?: PageEvent): void {
-
-    // PAGINATION API Query Constructor -- Query is different if we have an PageChange event or not (init)
-    // If event we get page data from event and construct the query
-    // If last page the limit of the query is the last expenses to get, else its pageSize
 
     let apiQuery = null;
     if (event){
       const {pageIndex, pageSize, length} = event;
       const lastPage = (pageIndex + 1) * pageSize > length;
+
+      // If last page the limit of the query is the last expenses to get, else its pageSize
       const limit = lastPage ? length - pageIndex * pageSize : pageSize;
+
       apiQuery = `?_page=${pageIndex + 1}&_limit=${limit}`;
     }
+    // If do not have event we set default data for API url
     else {
       apiQuery = `?_page=${1}&_limit=${10}`;
     }
 
     this.httpClient
-      // API BASE URL are stored in env file
       .get<any[]>(`${environment.API_BASE_URL}/api/expenseItems${apiQuery}`)
       .subscribe(
         (response) => {
@@ -144,15 +176,16 @@ export class ExpenseService {
       );
   }
 
-  // Read One
+  /** READ ONE
+   * @desc Same method as get all expenses but with the expense Id specified.
+   * @param expenseId - Id of the expense we want to get
+   */
   getOneExpenseFromServer(expenseId): void {
     this.httpClient
-      // API BASE URL are stored in env file
       .get<any[]>(`${environment.API_BASE_URL}/api/expenseItems/${expenseId}`)
       .subscribe(
         (response) => {
           this.currentExpense = response;
-          this.emitExpenses();
         },
         (error) => {
           this.snackBarService.openSnackBar('An error happened when getting expense from the server, please retry');
@@ -161,13 +194,15 @@ export class ExpenseService {
       );
   }
 
-  // Create
+  /** CREATE
+   * @desc Create an expense on the server. After creation get new expenses and update table
+   * @param expense - Enriched expense send as payload for creation
+   */
   saveExpensesToServer(expense): void {
     this.httpClient
       .post(`${environment.API_BASE_URL}/api/expenseItems`, expense)
       .subscribe(
         () => {
-          // After creation we get new list from server
           this.getExpensesFromServer();
         },
         (error) => {
@@ -177,13 +212,16 @@ export class ExpenseService {
       );
   }
 
-  // Update
+
+  /** UPDATE
+   * @desc Update an expense on the server using its id. After creation get new expenses and update table
+   * @param expense - Enriched expense send as payload for update
+   */
   updateExpensesToServer(expense): void {
     this.httpClient
       .put(`${environment.API_BASE_URL}/api/expenseItems/${expense.id}`, expense)
       .subscribe(
         () => {
-          // After update we get new list from server
           this.getExpensesFromServer();
         },
         (error) => {
@@ -193,13 +231,15 @@ export class ExpenseService {
       );
   }
 
-  // Delete
+  /** DELETE
+   * @desc Delete an expense on the server using its id. After deletion get new expenses and update table
+   * @param expense - Enriched expense send as payload for update
+   */
   deleteExpenseOnServer(expenseId): void {
     this.httpClient
       .delete(`${environment.API_BASE_URL}/api/expenseItems/${expenseId}`)
       .subscribe(
         () => {
-          // After deletion we get new list from server
           this.getExpensesFromServer();
         },
         (error) => {

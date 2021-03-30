@@ -1,5 +1,12 @@
+// -- IMPORTS -- //
+
+  // NG Modules
 import { Component, Inject, OnInit } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+
+  // Material component
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+
+// ----
 
 @Component({
   selector: 'app-dialog',
@@ -11,8 +18,8 @@ export class DialogComponent implements OnInit {
   title: string;
   content: string;
   onConfirm: any;
-  buttonConfirm?: string = 'Confirm';
-  danger?: boolean = false;
+  buttonConfirm = 'Confirm';
+  danger = false;
 
   constructor(
     private dialogRef: MatDialogRef<DialogComponent>,
@@ -28,11 +35,11 @@ export class DialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  confirm() {
+  confirm(): void {
     this.dialogRef.close();
   }
 
-  close() {
+  close(): void {
     this.dialogRef.close();
   }
 }

@@ -1,7 +1,14 @@
+// -- IMPORTS -- //
+
+  // NG Modules
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
+
+  // Custom services
 import { DrawerService } from 'src/app/services/drawer.service';
 import { FormService } from 'src/app/services/form.service';
+
+// ----
 
 @Component({
   selector: 'app-new-expense',
@@ -22,6 +29,12 @@ export class NewExpenseComponent implements OnInit {
     private formService: FormService,
     ) { }
 
+  /**
+   * @desc Method on component initialisation:
+   * Trigger the initForm method of form service
+   * Get expenseForm and currencies object from Form service
+   * Set custom errors management to from
+   */
     ngOnInit(): void {
       this.formService.initForm();
       this.expenseForm = this.formService.expenseForm;
@@ -29,15 +42,17 @@ export class NewExpenseComponent implements OnInit {
       this.expenseForm.statusChanges.subscribe(() => this.setErrors());
     }
 
+  /**
+   * @desc Method on form dom object submission.
+   * Trigger the from submission from Form Service, reset fields and close drawer.
+   * @param expenseForm form object. As NgForm to use the reset form feature
+   */
     onSubmit(expenseForm: NgForm): void {
-      if (this.expenseForm.invalid) {
-        return;
-      }
       this.formService.submitExpenseForm();
-      expenseForm.resetForm();
+      expenseForm.resetForm();                  // resetForm is used to avoid having validator triggered after reseting the form
       this.drawerService.close();
-      // -- We close the drawer after submit but that might be interesting to keep the drawer
-      //    and refocus on purchaseOn to chain creation (if it's a common user behavior)
+      // (That might be interesting to keep the drawer openand refocus on first field to chain creation
+      // (if it's a common user behavior)
     }
 
     onCancel(): void {
@@ -45,16 +60,20 @@ export class NewExpenseComponent implements OnInit {
       this.expenseForm.reset();
     }
 
-  // FORM VALIDATION -- Set multiple errors for Nature field //
+  // FORM VALIDATIONS -- //
+
+  /**
+   * @desc Method that set custom validation (for fields with 2+ validators)
+   */
     setErrors(): void {
-      // Handle multiple error for NATURE field
+      // Nature field : maxLength & required
       if (this.expenseForm.controls.nature.hasError('maxlength')) {
         this.natureErrorMsg = 'Nature should be max 120 characters';
       }
       else if (this.expenseForm.controls.nature.hasError('required')) {
         this.natureErrorMsg = 'Nature of the expense is required';
       }
-    } 
+    }
 
 
 

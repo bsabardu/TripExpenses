@@ -1,3 +1,6 @@
+// -- IMPORTS -- //
+
+  // NG Modules
 import { Component, OnInit } from '@angular/core';
 
 @Component({

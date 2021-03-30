@@ -17,116 +17,21 @@
       "lastModifiedAt": "2021-03-28T10:53:42.560Z"
     },
     {
-      "id": "2d261712-aae5-41c4-be51-94782d4382f6",
-      "purchasedOn": "1990-12-12",
-      "nature": "Bolosse",
-      "comment": "Ahoui",
+      "id": "2acda219-5064-464b-843a-665b59ee77f3",
+      "purchasedOn": "2021-03-11",
+      "nature": "Sacré",
       "originalAmount": {
-        "amount": 135,
+        "amount": 15,
         "currency": "USD"
       },
-      "convertedAmount": {
-        "amount": 114.56211812627292,
-        "currency": "EUR"
-      },
-      "createdAt": "2021-03-29T16:29:24.128Z",
-      "lastModifiedAt": "2021-03-29T19:15:20.014Z"
-    },
-    {
-      "id": "b1e2a95f-cc0b-485d-9b77-7244219ce2c5",
-      "purchasedOn": "2021-03-02",
-      "nature": "Ok",
-      "comment": "Good",
-      "originalAmount": {
-        "amount": 135,
-        "currency": "EUR"
-      },
-      "convertedAmount": {
-        "amount": null,
-        "currency": "EUR"
-      },
-      "createdAt": "2021-03-29T19:16:58.062Z",
-      "lastModifiedAt": "2021-03-29T19:16:58.062Z"
-    },
-    {
-      "id": "9fecf681-fc5a-43fd-a258-cece2ec22c26",
-      "purchasedOn": "2021-03-01",
-      "nature": "sqdqsd",
-      "comment": "qsdqs",
-      "originalAmount": {
-        "amount": 20,
-        "currency": "GBP"
-      },
-      "convertedAmount": {
-        "amount": 23.49624060150376,
-        "currency": "EUR"
-      },
-      "createdAt": "2021-03-29T19:17:38.797Z",
-      "lastModifiedAt": "2021-03-29T19:17:38.797Z"
-    },
-    {
-      "id": "bf2f381c-78d5-43f8-aa67-3ff5a979a7ed",
-      "purchasedOn": "2021-03-18",
-      "nature": "Will it blend ?",
-      "comment": "We do not know",
-      "originalAmount": {
-        "amount": 123,
-        "currency": "EUR"
-      },
-      "convertedAmount": {
-        "amount": null,
-        "currency": "EUR"
-      },
-      "createdAt": "2021-03-29T19:39:56.402Z",
-      "lastModifiedAt": "2021-03-29T19:39:56.402Z"
-    },
-    {
-      "id": "a896d39c-8ad5-4143-9bd9-fa0fcf3831d6",
-      "purchasedOn": "2021-03-04",
-      "nature": "Ok",
-      "comment": "Bg",
-      "originalAmount": {
-        "amount": 123,
-        "currency": "EUR"
-      },
-      "convertedAmount": {
-        "amount": null,
-        "currency": "EUR"
-      },
-      "createdAt": "2021-03-29T19:46:18.971Z",
-      "lastModifiedAt": "2021-03-29T19:46:18.971Z"
-    },
-    {
-      "id": "31c96ea1-5daa-46f6-a0ec-f6bde278d46a",
-      "purchasedOn": "0090-12-12",
-      "nature": "fds",
-      "comment": "Okaip",
-      "originalAmount": {
-        "amount": 123,
-        "currency": "EUR"
-      },
-      "convertedAmount": {
-        "amount": null,
-        "currency": "EUR"
-      },
-      "createdAt": "2021-03-29T19:47:08.791Z",
-      "lastModifiedAt": "2021-03-29T19:47:08.791Z"
-    },
-    {
-      "id": "feac91ea-77e9-4717-b421-329aaaa1ca62",
-      "purchasedOn": "2021-03-31",
-      "nature": "dqsdsq",
+      "currency": "USD",
       "comment": "",
-      "originalAmount": {
-        "amount": 123,
-        "currency": "EUR"
-      },
       "convertedAmount": {
-        "amount": null,
-        "currency": "EUR"
+        "amount": 12.77574312239162,
+        "currency": "USD"
       },
-      "createdAt": "2021-03-29T20:03:22.159Z",
-      "lastModifiedAt": "2021-03-29T20:03:22.159Z"
+      "createdAt": "2021-03-30T16:21:50.372Z",
+      "lastModifiedAt": "2021-03-30T16:21:50.372Z"
     }
   ]
 }
