@@ -162,7 +162,7 @@ export class ExpenseService {
     }
 
     this.httpClient
-      .get<any[]>(`${environment.API_BASE_URL}/api/expenseItems${apiQuery}`)
+      .get<any[]>(`${environment.API_BASE_URL || 'http://localhost:3000'}/api/expenseItems${apiQuery}`)
       .subscribe(
         (response) => {
           this.expenses = response;

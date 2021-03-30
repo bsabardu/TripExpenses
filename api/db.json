@@ -15,23 +15,6 @@
       "comment": "Mission de 5 jours à Londres",
       "createdAt": "2018-12-05T14:00:34.435154Z",
       "lastModifiedAt": "2021-03-28T10:53:42.560Z"
-    },
-    {
-      "id": "2acda219-5064-464b-843a-665b59ee77f3",
-      "purchasedOn": "2021-03-11",
-      "nature": "Sacré",
-      "originalAmount": {
-        "amount": 15,
-        "currency": "USD"
-      },
-      "currency": "USD",
-      "comment": "",
-      "convertedAmount": {
-        "amount": 12.77574312239162,
-        "currency": "USD"
-      },
-      "createdAt": "2021-03-30T16:21:50.372Z",
-      "lastModifiedAt": "2021-03-30T16:21:50.372Z"
     }
   ]
 }
