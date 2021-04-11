@@ -18,7 +18,7 @@ This project is using the [Material UI for angular](material.angular.io)
 ## Installation
 1. Clone repo
 2. run `npm install` or `yarn`
-3. run API `node api/server.sj`
+3. run API `node api/server.js`
 4. run `ng serve`
 5. Application will be runned on port 4200
 
